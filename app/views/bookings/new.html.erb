@@ -1,0 +1,10 @@
+<div class="banner_exp" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @experience.photo, crop: :fill %>')">
+  <h1 class="booking_title">Your Booking</h1>
+  <div class="container" style="display:flex; align-items: center;">
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-4">
+        <%= render "form" %>
+      </div>
+    </div>
+  </div>
+</div>
