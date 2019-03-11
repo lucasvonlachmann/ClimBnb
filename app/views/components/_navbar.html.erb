@@ -1,0 +1,68 @@
+<div class="navbar-wagon">
+  <!-- Logo -->
+  <a href="/" class="navbar-wagon-brand">
+    <%= image_tag 'climbon.png', alt: "logo" %>
+  </a>
+
+  <% if current_user.present? %>
+
+    <!-- Right Navigation Logged In -->
+    <div class="navbar-wagon-right hidden-xs hidden-sm">
+
+      <a href="" class="navbar-wagon-item navbar-wagon-link">Map</a>
+      <a href="/experiences" class="navbar-wagon-item navbar-wagon-link">Experiences</a>
+      <a href="/profile" class="navbar-wagon-item navbar-wagon-link">Profile</a>
+
+      <!-- Profile picture with dropdown list -->
+      <div class="navbar-wagon-item">
+        <div class="dropdown">
+         <!--  <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown"> -->
+          <%= cl_image_tag current_user.photo, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", 'data-toggle':"dropdown"  %>
+          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+            <li><a href="/experiences">Experiences</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><%= link_to "Sing Out", destroy_user_session_path, method: :delete %></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Dropdown appearing on mobile only -->
+    <div class="navbar-wagon-item hidden-md hidden-lg">
+      <div class="dropdown">
+        <i class="fas fa-bars dropdown-toggle" data-toggle="dropdown" role="button"></i>
+        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <li><a href="/experiences">Experiences</a></li>
+          <li><a href="/profile">Profile</a></li>
+          <li><%= link_to "Sing Out", destroy_user_session_path, method: :delete %></li>
+        </ul>
+      </div>
+    </div>
+
+  <% else %>
+
+    <!-- Right Navigation Not Logged In -->
+    <div class="navbar-wagon-right hidden-xs hidden-sm">
+
+      <a href="#" class="navbar-wagon-item navbar-wagon-link">Map</a>
+      <a href="/experiences" class="navbar-wagon-item navbar-wagon-link">Experiences</a>
+      <a href="/users/sign_in" class="navbar-wagon-item navbar-wagon-link">Sign In</a>
+
+    </div>
+
+    <!-- Dropdown appearing on mobile only -->
+    <div class="navbar-wagon-item hidden-md hidden-lg">
+      <div class="dropdown">
+        <i class="fas fa-bars dropdown-toggle" data-toggle="dropdown" role="button"></i>
+        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <li><a href="#" class="navbar-wagon-item navbar-wagon-link">Map</a></li>
+          <li><a href="/experiences" class="navbar-wagon-item navbar-wagon-link">Experiences</a></li>
+          <li><a href="/users/sign_in" class="navbar-wagon-item navbar-wagon-link">Sign In</a></li>
+        </ul>
+      </div>
+    </div>
+
+  <% end %>
+
+</div>

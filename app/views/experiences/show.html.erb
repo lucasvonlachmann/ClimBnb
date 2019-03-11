@@ -1,0 +1,46 @@
+<h1 class="text-center" style="padding: 30px 0;"><%= @experience.name %></h1>
+
+<%= cl_image_tag @experience.photo, transformation: { width: :auto, heigth: 500, crop: :fill }, class: "img-responsive center-block" %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="container-info">
+        <h2 class="text-center">Climb Details</h2>
+        <ul>
+          <li><strong>Description:</strong> <%= @experience.description %></li>
+          <li><strong>Mountain:</strong> <%= @experience.mountain.name %></li>
+          <li><strong>City:</strong> <%= @experience.mountain.city %></li>
+          <li><strong>Max. People:</strong> <%= @experience.capacity %></li>
+          <li><strong>Duration:</strong> <%= @experience.duration %></li>
+          <li><strong>Price per person:</strong> <%= @experience.price %></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="container-info">
+        <h2 class="text-center">Guide Details</h2>
+          <li><strong>Fisrt Name:</strong> <%= @experience.user.first_name %></li>
+          <li><strong>Last Name:</strong> <%= @experience.user.last_name %></li>
+          <li><strong>Email:</strong> <%= @experience.user.email %></li>
+      </div>
+    </div>
+  </div>
+
+<!--   <%= link_to new_experience_booking_path(@experience) do %>
+    <button type="button" class="btn btn-primary btn-lg center-block">Book Now!</button>
+  <% end %>
+ -->
+
+ <h3 class= "text-center">Book Now:</h3>
+  <div class="container" style="display:flex; align-items: center;">
+    <div class="row">
+      <div class="col-sm-4 col-sm-offset-4">
+        <%= render "form" %>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+

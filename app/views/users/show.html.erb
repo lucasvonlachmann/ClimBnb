@@ -1,0 +1,50 @@
+<div class="container">
+<!-- <p><%#= current_user.email %></p> -->
+<h1 style="text-align: center;">Welcome <strong><%= current_user.first_name %>!</strong></h1>
+<br>
+
+  <div style="display: flex; justify-content: space-around;">
+    <div><%= link_to new_experience_path  do %>
+          <button type="button" class="btn btn-default">Offer a New Experience!</button>
+        <% end %>
+    </div>
+
+    <div><%= link_to edit_user_registration_path do %>
+      <button type="button" class="btn btn-default">Update your profile</button>
+      <% end %>
+    </div>
+
+    <div><%= link_to destroy_user_session_path, method: :delete do %>
+      <button type="button" class="btn btn-default">Logout</button>
+      <% end %>
+    </div>
+  </div>
+
+<br>
+<br>
+  <h3>My offered experiences:</h3>
+    <div class="cards">
+      <% current_user.experiences.each do |experience| %>
+        <%= link_to experience_path(experience) do %>
+          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path experience.photo, height: 300, width: 400, crop: :fill %>')">
+            <%= experience.name %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+
+  <h3>My bookings:</h3>
+  <div class="cards">
+    <% current_user.bookings.each do |booking| %>
+      <%= link_to experience_path(booking.experience) do %>
+          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path booking.experience.photo, height: 300, width: 400, crop: :fill %>')">
+            <%= booking.experience.name %>
+            <div class="date"><%= booking.date %></div>
+          </div>
+        <% end %>
+    <% end %>
+  </div>
+
+</div>
+

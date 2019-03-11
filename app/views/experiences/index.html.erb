@@ -1,0 +1,19 @@
+<div class="container" style="padding-bottom: 150px;">
+  <div style="padding-top: 50px">
+    <%= render 'components/search' %>
+  </div>
+  <h1 class="text-center" style="padding: 30px 0;">Climbing Experiences</h1>
+
+  <div class="cards">
+    <% @experiences.each do |experience| %>
+      <%= link_to experience_path(experience) do %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path experience.photo, height: 300, width: 400, crop: :fill %>')">
+          <%= experience.name %>
+          <div class="card-description"><p><%= experience.mountain.name %> mountain</p></div>
+          <div class="card-price"><h3>R$<%= experience.price %></h3></div>
+        </div>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>
