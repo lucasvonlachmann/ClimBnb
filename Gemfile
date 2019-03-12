@@ -17,6 +17,7 @@ gem 'uglifier'
 gem 'webpacker'
 
 gem 'devise'
+gem 'flatpickr'
 
 gem 'faker'
 

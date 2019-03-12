@@ -22,7 +22,7 @@
 
     <div class="col-xs-12 col-sm-6">
       <div class="card-show card-guide">
-        <img class="card-user-show" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
+        <img class="card-user-show" src="<%= @experience.user.photo.url %>">
         <div class="card-description-show">
           <h2><strong>Guide Name:</strong> <%= @experience.user.first_name %> <%= @experience.user.last_name %></h2>
           <p><%= @experience.user.bio %></p>
@@ -32,8 +32,8 @@
   </div>
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4">
-      <h3 class= "text-center">Book this experience:</h3>
-      <div><%= render "form" %></div>
+      <h3 class= "text-center" style="padding-top: 32px;">Book this experience:</h3>
+      <div style="padding-top: 22px; padding-bottom: 96px;"><%= render "form" %></div>
 
     </div>
   </div>
