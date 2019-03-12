@@ -4,9 +4,9 @@ class ExperiencesController < ApplicationController
 
   def index
     if params[:query].present?
-      @experiences = Experience.all.select { |experience| experience.mountain.city == params[:query] }
+      @experiences = Experience.all.select { |experience| experience.mountain.city == params[:query] }.reverse
     else
-      @experiences = Experience.all
+      @experiences = Experience.all.reverse
     end
   end
 
