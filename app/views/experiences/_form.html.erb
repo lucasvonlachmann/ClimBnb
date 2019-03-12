@@ -1,5 +1,5 @@
   <%= simple_form_for [@experience, @booking], html: { class: 'text-center input_label' } do |f|  %>
-    <%= f.input :date, as: :date, input_html: {  class: 'text-center', type: 'date' }, html5: true %>
+    <%= f.input :date, as: :string, placeholder: 'Select date...', input_html: {  class: 'datepicker text-center'}%>
     <%= f.input :number_of_people, input_html: { class: 'text-center' } %>
     <%= f.submit "Book now!", class: "btn btn-primary" %>
   <% end %>
