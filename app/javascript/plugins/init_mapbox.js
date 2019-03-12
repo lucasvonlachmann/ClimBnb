@@ -1,4 +1,4 @@
-import mapboxgl from 'mapbox-gl';
+  import mapboxgl from 'mapbox-gl';
 
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
@@ -18,6 +18,9 @@ const initMapbox = () => {
 
     const markers = JSON.parse(mapElement.dataset.markers);
     markers.forEach((marker) => {
+
+      const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
+
       new mapboxgl.Marker()
         .setLngLat([ marker.lng, marker.lat ])
         .addTo(map);

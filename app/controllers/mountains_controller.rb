@@ -8,7 +8,8 @@ class MountainsController < ApplicationController
     @markers = @mountains.map do |mountain|
       {
         lng: mountain.longitude,
-        lat: mountain.latitude
+        lat: mountain.latitude,
+        infoWindow: render_to_string(partial: "infowindow", locals: { mountain: mountain })
       }
     end
   end
