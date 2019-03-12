@@ -2,15 +2,24 @@
   padding: 6px 44px;
   background: transparent;
   border-width: 1px;
-  border-color: ghostwhite;
-  color: white;
+  border-color: #222;
   font-weight: lighter;
   border-radius: 2px;
   transition: 0.5s ease;
   text-align: center;
   position: relative;
   left: 18px;
+  color: #222;
 
+  &:focus {
+    outline-width: 0px;
+    border-color: transparent transparent #222;
+  }
+}
+
+.banner .search-input {
+  border-color: ghostwhite;
+  color: white;
 
   &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     color: white;
@@ -25,9 +34,7 @@
     color: white;
   }
 
-
   &:focus {
-    outline-width: 0px;
     border-color: transparent transparent white;
   }
 }
