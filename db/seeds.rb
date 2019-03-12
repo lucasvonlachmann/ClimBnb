@@ -15,22 +15,6 @@ end
 
 require 'faker'
 
-5.times do
-  Mountain.create!(
-    name: Faker::Movies::LordOfTheRings.location,
-    city: "Rio de Janeiro"
-    )
-end
-
-10.times do
-  User.create!(
-    first_name: Faker::Movies::LordOfTheRings.character,
-    last_name: Faker::Movies::VForVendetta.character,
-    password: "123456",
-    email: Faker::Internet.email
-  )
-end
-
 mountain_photo_urls = %w[
   https://images.unsplash.com/photo-1537281921002-30e96f9cddf0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1353&q=80
   https://images.unsplash.com/photo-1523188890643-9460d9e59cee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=333&q=80
@@ -46,11 +30,49 @@ mountain_photo_urls = %w[
   https://images.unsplash.com/photo-1544989163-df6cdad98651?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80
 ]
 
+mountains_address = %w[
+  'Pedra da Gávea - Barra da Tijuca, Rio de Janeiro - RJ'
+  'Avenida Niemeyer - Vidigal, RJ - Rio de Janeiro'
+  'Avenida Pasteur - Urca, Rio de Janeiro - RJ'
+  'Barra de Guaratiba, Rio de Janeiro - RJ'
+  'Cristo Redentor - Alto da Boa Vista, Rio de Janeiro - RJ'
+]
+
+users_photos = %w[
+  'https://images.unsplash.com/photo-1495374519711-e22c8b4596a0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'
+  'https://images.unsplash.com/photo-1465391422195-6be887eb93a9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'
+  'https://images.unsplash.com/photo-1472066719480-ecc7314ed065?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'
+  'https://images.unsplash.com/photo-1483323323858-4916bde7bd5d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'
+  'https://images.unsplash.com/photo-1465405319612-e87fd78c23f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'
+  'https://images.unsplash.com/photo-1470259078422-826894b933aa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'
+  'https://images.unsplash.com/photo-1544435253-f0ead49638fa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80'
+]
+
+mountains_address.each do |address|
+  Mountain.create!(
+    name: Faker::Movies::LordOfTheRings.location,
+    city: "Rio de Janeiro",
+    address: address,
+    remote_photo_url: mountain_photo_urls.sample
+    )
+end
+
+users_photos.each do |photo|
+  User.create!(
+    first_name: Faker::Movies::LordOfTheRings.character,
+    last_name: Faker::Movies::VForVendetta.character,
+    bio: Faker::Lorem.paragraphs,
+    remote_photo_url: photo,
+    password: "123456",
+    email: Faker::Internet.email
+  )
+end
+
 mountain_photo_urls.each do |photo_url|
   Experience.create!(
     user_id: User.pluck(:id).sample,
     name: Faker::Book.title,
-    description: Faker::BossaNova.song,
+    description: Faker::Lorem.paragraphs,
     capacity: rand(1..2),
     duration: rand(2..7),
     mountain_id: Mountain.pluck(:id).sample,
