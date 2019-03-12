@@ -1,49 +1,80 @@
 <div class="container">
 <!-- <p><%#= current_user.email %></p> -->
-<h1 style="text-align: center;">Welcome <strong><%= current_user.first_name %>!</strong></h1>
-<br>
+<h1 style="text-align: center; padding: 30px 0;">Welcome <strong><%= current_user.first_name %>!</strong></h1>
 
-  <div style="display: flex; justify-content: space-around;">
-    <div><%= link_to new_experience_path  do %>
-          <button type="button" class="btn btn-default">Offer a New Experience!</button>
+
+<div class="container profile-container">
+  <h3 class="text-center" style="padding-bottom: 20px;">Profile Info</h3>
+  <div class="row">
+    <div class="col-sm-12 col-lg-4">
+      <%= cl_image_tag current_user.photo, height: 200, width: 200, crop: :fill, class: "avatar-square center-block" %>
+      <br>
+      <p><strong>E-mail: </strong><%= current_user.email %></p>
+      <p><strong>Full Name: </strong><%= current_user.fullname %></p>
+    </div>
+
+    <div class="col-sm-12 col-lg-8 ">
+      <p><strong>Biography: </strong><%= current_user.bio %></p>
+      <br>
+      <br>
+      <div class="text-center"><%= link_to edit_user_registration_path do %>
+        <button type="button" class="btn btn-success">Update Profile</button>
         <% end %>
+      </div>
     </div>
 
-    <div><%= link_to edit_user_registration_path do %>
-      <button type="button" class="btn btn-default">Update your profile</button>
-      <% end %>
-    </div>
+  </div>
+</div>
 
-    <div><%= link_to destroy_user_session_path, method: :delete do %>
-      <button type="button" class="btn btn-default">Logout</button>
+<div class="container profile-container">
+
+  <h3 class="text-center">My offered experiences</h3>
+  <div class="cards" style="padding: 30px 0">
+    <% current_user.experiences.each do |experience| %>
+      <%= link_to experience_path(experience) do %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path experience.photo, height: 300, width: 400, crop: :fill %>')">
+          <%= experience.name %>
+        </div>
       <% end %>
-    </div>
+    <% end %>
   </div>
 
-<br>
-<br>
-  <h3>My offered experiences:</h3>
-    <div class="cards">
-      <% current_user.experiences.each do |experience| %>
-        <%= link_to experience_path(experience) do %>
-          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path experience.photo, height: 300, width: 400, crop: :fill %>')">
-            <%= experience.name %>
-          </div>
-        <% end %>
+  <div class="text-center"><%= link_to new_experience_path  do %>
+        <button type="button" class="btn btn-success">
+          <% if current_user.experiences.present? %>
+            New Experience
+          <% else %>
+            Become a Guide!
+          <% end %>
+        </button>
       <% end %>
-    </div>
+  </div>
 
+</div>
 
-  <h3>My bookings:</h3>
-  <div class="cards">
+<div class="container profile-container">
+
+  <h3 class="text-center">My bookings</h3>
+  <div class="cards" style="padding: 30px 0">
     <% current_user.bookings.each do |booking| %>
       <%= link_to experience_path(booking.experience) do %>
-          <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path booking.experience.photo, height: 300, width: 400, crop: :fill %>')">
-            <%= booking.experience.name %>
-            <div class="date"><%= booking.date %></div>
-          </div>
-        <% end %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path booking.experience.photo, height: 300, width: 400, crop: :fill %>')">
+          <%= booking.experience.name %>
+          <div class="date"><%= booking.date %></div>
+        </div>
+      <% end %>
     <% end %>
+  </div>
+
+  <div class="text-center"><%= link_to experiences_path  do %>
+        <button type="button" class="btn btn-success">
+          <% if current_user.bookings.present? %>
+            New Booking
+          <% else %>
+            Book your first experience!
+          <% end %>
+        </button>
+      <% end %>
   </div>
 
 </div>

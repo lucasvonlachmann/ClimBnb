@@ -10,4 +10,8 @@ class User < ApplicationRecord
 
   mount_uploader :photo, PhotoUploader
 
+  def fullname
+    "#{first_name.capitalize} #{last_name.capitalize}"
+  end
+
 end
