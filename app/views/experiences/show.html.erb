@@ -2,31 +2,35 @@
 
 <%= cl_image_tag @experience.photo, transformation: { width: :auto, heigth: 500, crop: :fill }, class: "img-responsive center-block" %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6">
-      <div class="container-info">
-        <h2 class="text-center">Climb Details</h2>
-        <ul>
-          <li><strong>Description:</strong> <%= @experience.description %></li>
-          <li><strong>Mountain:</strong> <%= @experience.mountain.name %></li>
-          <li><strong>City:</strong> <%= @experience.mountain.city %></li>
-          <li><strong>Max. People:</strong> <%= @experience.capacity %></li>
-          <li><strong>Duration:</strong> <%= @experience.duration %></li>
-          <li><strong>Price per person:</strong> <%= @experience.price %></li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-sm-6">
-      <div class="container-info">
-        <h2 class="text-center">Guide Details</h2>
-          <li><strong>Fisrt Name:</strong> <%= @experience.user.first_name %></li>
-          <li><strong>Last Name:</strong> <%= @experience.user.last_name %></li>
-          <li><strong>Email:</strong> <%= @experience.user.email %></li>
-      </div>
-    </div>
-  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
 
+        <div class="card-show card-guide">
+          <div class="card-category-show"><strong>Climb Details:</strong></div>
+          <div class="card-description-show">
+            <p><%= @experience.description %></p>
+            <h3><strong>Mountain:</strong> <%= @experience.mountain.name %></h3>
+            <h3><strong>City:</strong> <%= @experience.mountain.city %></h3>
+            <h3><strong>Max Participants:</strong> <%= @experience.capacity %></h3>
+            <h3><strong>Duration:</strong> <%= @experience.duration %> hours</h3>
+            <h3><strong>Price per person:</strong> R$ <%= @experience.price %></h3>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6">
+        <div class="card-show card-guide">
+          <img class="card-user-show" src="https://kitt.lewagon.com/placeholder/users/tgenaitay">
+          <div class="card-description-show">
+            <h2><strong>Guide Name:</strong> <%= @experience.user.first_name %> <%= @experience.user.last_name %></h2>
+            <p><%= @experience.user.bio %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
 <!--   <%= link_to new_experience_booking_path(@experience) do %>
     <button type="button" class="btn btn-primary btn-lg center-block">Book Now!</button>
   <% end %>
